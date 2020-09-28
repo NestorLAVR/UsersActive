@@ -61,7 +61,6 @@ def UsersAuth_pDAY(date):
         date = date-datetime.timedelta(days=2)
     elif date.weekday == 5:
         date = date-datetime.timedelta(days=1)
-    return date
     headers = {
         'x-api-key': 'n7sxzihgdlkp0axb6676c88niug43b10gr1xqilr',
     }
@@ -79,7 +78,6 @@ def UsersAuth_pDAY(date):
     mydata = json.loads(response.text)
     value = mydata['tables'][-1]['rows'][-1][-1]
     return value
-
 
 def UsersAuth_MON(date):
     end_date=date
@@ -125,5 +123,5 @@ def UsersAuths_pMON(date):
     return value
 
 def Date_Today():
-    date= datetime.date.today()
+    date = datetime.date.today()
     return date
