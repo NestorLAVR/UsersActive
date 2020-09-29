@@ -3,7 +3,11 @@ import requests
 import datetime
 import monthdelta
 import math
+f= open('showusers/apikeys.txt', 'r')
+x=f.read().split('\n')
 
+apikey= x[1]
+apID= x[0]
 def DateRecieve():
     date = datetime.date.today()-datetime.timedelta(days=1)
     if date.weekday() == 6:
@@ -36,7 +40,7 @@ def AbrDay(date):
     
 def UsersAuth_DAY(date):
     headers = {
-        'x-api-key': 'n7sxzihgdlkp0axb6676c88niug43b10gr1xqilr',
+        'x-api-key': apikey ,
     }
 
     params = (
@@ -46,7 +50,7 @@ def UsersAuth_DAY(date):
              date) + '"))| extend username1 = tolower(tostring(customDimensions.user))| distinct username1| count'),
     )
 
-    response = requests.get('https://api.applicationinsights.io/v1/apps/4ef874d8-f7e4-4672-89e3-ac7ad678c238/query',
+    response = requests.get('https://api.applicationinsights.io/v1/apps/'+ apID + '/query',
                             headers=headers, params=params)
 
     mydata = json.loads(response.text)
@@ -62,7 +66,7 @@ def UsersAuth_pDAY(date):
     elif date.weekday == 5:
         date = date-datetime.timedelta(days=1)
     headers = {
-        'x-api-key': 'n7sxzihgdlkp0axb6676c88niug43b10gr1xqilr',
+        'x-api-key': apikey,
     }
 
     params = (
@@ -72,7 +76,7 @@ def UsersAuth_pDAY(date):
              date) + '"))| extend username1 = tolower(tostring(customDimensions.user))| distinct username1| count'),
     )
 
-    response = requests.get('https://api.applicationinsights.io/v1/apps/4ef874d8-f7e4-4672-89e3-ac7ad678c238/query',
+    response = requests.get('https://api.applicationinsights.io/v1/apps/'+ apID + '/query',
                             headers=headers, params=params)
 
     mydata = json.loads(response.text)
@@ -83,7 +87,7 @@ def UsersAuth_MON(date):
     end_date=date
     start_date=date - monthdelta.monthdelta(months=1)
     headers = {
-        'x-api-key': 'n7sxzihgdlkp0axb6676c88niug43b10gr1xqilr',
+        'x-api-key': apikey,
     }
 
     params = (
@@ -93,7 +97,7 @@ def UsersAuth_MON(date):
              end_date) + '"))| extend username1 = tolower(tostring(customDimensions.user))| distinct username1| count'),
     )
 
-    response = requests.get('https://api.applicationinsights.io/v1/apps/4ef874d8-f7e4-4672-89e3-ac7ad678c238/query',
+    response = requests.get('https://api.applicationinsights.io/v1/apps/'+ apID + '/query',
                             headers=headers, params=params)
 
     mydata = json.loads(response.text)
@@ -105,7 +109,7 @@ def UsersAuths_pMON(date):
     end_date = date - monthdelta.monthdelta(months=1)
     start_date = date - monthdelta.monthdelta(months=2)
     headers = {
-        'x-api-key': 'n7sxzihgdlkp0axb6676c88niug43b10gr1xqilr',
+        'x-api-key': apikey,
     }
 
     params = (
@@ -115,7 +119,7 @@ def UsersAuths_pMON(date):
              end_date) + '"))| extend username1 = tolower(tostring(customDimensions.user))| distinct username1| count'),
     )
 
-    response = requests.get('https://api.applicationinsights.io/v1/apps/4ef874d8-f7e4-4672-89e3-ac7ad678c238/query',
+    response = requests.get('https://api.applicationinsights.io/v1/apps/'+ apID + '/query',
                             headers=headers, params=params)
 
     mydata = json.loads(response.text)
