@@ -26,7 +26,7 @@ SECRET_KEY = 'c02d39zij%s%=d@hbq&c88ab_-20nz3t+3(ge4r-(#+^prr@bh'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['104.214.57.221', '127.0.0.1', 'localhost']
+ALLOWED_HOSTS = ['104.214.57.221', '127.0.0.1', 'localhost', 'monitor-metrics.flowtegra.io']
 
 
 # Application definition
